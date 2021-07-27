@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   ScrollView,
   StyleSheet,
@@ -7,10 +9,13 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
+import { Provider } from 'react-redux';
+
 import Header from './src/components/Header';
 import Form from './src/components/Form';
 import Quotation from './src/components/Quotation';
 import axios from 'axios';
+import store from './src/store';
 
 const App = () => {
   const [coin, saveCoin] = useState('');
@@ -43,6 +48,7 @@ const App = () => {
   );
   return (
     <>
+    <Provider store={store}>
       <ScrollView>
         <Header />
         <Image
@@ -60,6 +66,7 @@ const App = () => {
         </View>
         <View style={{marginTop: 40}}>{component}</View>
       </ScrollView>
+    </Provider>
     </>
   );
 };
